@@ -1,0 +1,48 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'edgelog-dev'
+    environment: 'local'
+
+# Alertmanager configuration (optional for Phase 1)
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#         - targets: []
+
+# Load rules once and periodically evaluate them
+rule_files:
+  - "alerts.yml"
+
+# Scrape configurations
+scrape_configs:
+  # EdgeLog services
+  - job_name: 'edgelog-ingestor'
+    static_configs:
+      - targets: ['host.docker.internal:9191']
+        labels:
+          service: 'ingestor'
+          component: 'ingestion'
+
+  - job_name: 'edgelog-router'
+    static_configs:
+      - targets: ['host.docker.internal:9192']
+        labels:
+          service: 'router'
+          component: 'routing'
+
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Redis exporter (optional - requires redis_exporter sidecar)
+  # - job_name: 'redis'
+  #   static_configs:
+  #     - targets: ['redis-exporter:9121']
+
+  # ClickHouse exporter (optional - requires clickhouse_exporter)
+  # - job_name: 'clickhouse'
+  #   static_configs:
+  #     - targets: ['clickhouse-exporter:9116']

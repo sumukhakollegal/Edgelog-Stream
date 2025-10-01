@@ -1,0 +1,49 @@
+# Claude Code personal notes
+claude.md
+
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin/
+dist/
+
+# Go build artifacts
+*.test
+*.out
+vendor/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Coverage reports
+*.coverprofile
+coverage.out
+coverage.html
+
+# pprof profiles
+*.prof
+*.pprof
+
+# Docker volumes (if any local data)
+data/
+volumes/
