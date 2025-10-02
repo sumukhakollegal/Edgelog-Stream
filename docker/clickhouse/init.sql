@@ -94,6 +94,5 @@ PARTITION BY toYYYYMM(error_timestamp)
 ORDER BY (error_timestamp, tenant_id, error_type)
 TTL error_timestamp + INTERVAL 30 DAY;
 
--- Grant permissions for application user
--- Note: In production, use separate users with limited permissions
-GRANT SELECT, INSERT ON edgelog.* TO default;
+-- Note: Default user has full permissions in development mode
+-- In production, create separate users with limited permissions

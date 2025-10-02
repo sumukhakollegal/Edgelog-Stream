@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   # Kafka-compatible message broker (lightweight alternative to Kafka)
   redpanda:
-    image: vectorized/redpanda:latest
+    image: docker.redpanda.com/redpandadata/redpanda:latest
     container_name: edgelog-redpanda
     command:
       - redpanda
@@ -32,7 +30,7 @@ services:
 
   # Redpanda Console for Kafka UI
   redpanda-console:
-    image: vectorized/console:latest
+    image: docker.redpanda.com/redpandadata/console:latest
     container_name: edgelog-redpanda-console
     depends_on:
       - redpanda
